@@ -2,7 +2,7 @@
 
 Fibers is a drawing interface made with Processing.
 
-[becojo.me/fibers](http://becojo.me/labs/fibers)
+[bcj.io/fibers](http://bcj.io/fibers)
 
 ## License
 

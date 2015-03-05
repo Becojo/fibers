@@ -38,14 +38,14 @@ int i;
 
 void drawInfo()
 {
-  text("F I B E R S\n\n\n[ space ] clear\n\n[ p ] pause\n\n[ a ] toggle random/auto mode\n\n[ c ] change color\n\n[ t ] turbulence\n\n[ h ] show this\n\n(click to focus)", 50, 50); 
+  text("F I B E R S\n\n\n[ space ] clear\n\n[ p ] pause\n\n[ a ] toggle random/auto mode\n\n[ c ] change color\n\n[ t ] turbulence\n\n[ h ] show this\n\n(click to focus)", 50, 50);
 }
 
 void setup()
 {
-  frameRate(30); 
+  frameRate(30);
   background(0);
-  
+
   size(screen.width, screen.height);
   resetPoints();
   drawInfo();
@@ -97,9 +97,9 @@ void draw()
 
 void update()
 {
-  
+
   if(autoMode)
-  { 
+  {
     // Makes sure the point is not out of the bounds of the sketch
     if(autoPoint.x < 50)
     {
@@ -113,7 +113,7 @@ void update()
     {
       autoPoint.x += random(-autoPointVar, autoPointVar);
     }
-    
+
     if(autoPoint.y < 50)
     {
       autoPoint.y += random(1, autoPointVar);
@@ -126,19 +126,19 @@ void update()
     {
       autoPoint.y += random(-autoPointVar, autoPointVar);
     }
-    
-    // the damp is stronger here so that the when the  
+
+    // the damp is stronger here so that the when the
     // curve moves it looks smoother
     points[0].x += (autoPoint.x - points[0].x) / 20;
     points[0].y += (autoPoint.y - points[0].y) / 20;
   }
   else
   {
-    
+
     points[0].x += (mouseX - points[0].x) / damp;
     points[0].y += (mouseY - points[0].y) / damp;
   }
-  
+
   for(i = 1; i < pointCount; i++)
   {
     // Approches each points toward the one it follows
@@ -155,18 +155,18 @@ void keyPressed()
       resetPoints(mouseX, mouseY);
       background(0);
     break;
-    
+
     case 'a':
       autoMode = !autoMode;
 
       autoPoint.x = mouseX;
       autoPoint.y = mouseY;
     break;
-    
+
     case 'h':
       drawInfo();
     break;
-    
+
     case 'c':
       colorSchemeId++;
 
@@ -175,7 +175,7 @@ void keyPressed()
         colorSchemeId = 0;
       }
     break;
-    
+
     case 'p':
       if(playing = !playing)
       {
@@ -186,26 +186,26 @@ void keyPressed()
         noLoop();
       }
     break;
-    
+
     case 't':
       turbulence++;
-      
+
       if(turbulence >= 4)
       {
         turbulence = 0;
       }
     break;
   }
-  
+
 }
 
-// Redefines every points at the point specified 
+// Redefines every points at the point specified
 // by the parameters or at the middle of the sketch
 void resetPoints(int x, int y)
 {
   x = x || width / 2;
   y = y || height / 2;
-  
+
   for(i = 0; i < pointCount; i++)
   {
     points[i] = new PVector(x, y);
